@@ -1,3 +1,7 @@
+import {getReducedAddress} from "./utils/Utils"
+
+
+
 class TextRotateSystem implements ISystem {
   entity: Entity
   transform: Transform
@@ -27,7 +31,6 @@ class ImageRotateSystem implements ISystem {
     this.transform.scale = new Vector3(0.5, 0.01, 0.5)
   }
 
-  
   update() {
 
     this.transform.position =  new Vector3(
@@ -43,21 +46,21 @@ class ImageRotateSystem implements ISystem {
   }
 }
 
+function addingAddressToHead() {
+  const text = new Entity()
+  text.addComponent(new Transform({ position: new Vector3(1, 1, 1) }))
+  engine.addEntity(text)
+  engine.addSystem(new TextRotateSystem(text))
+  const address = "0x59E1faC2FAF72765AD41aE1BfAC53d5cd80acB91"
+  const reducedAddress =  getReducedAddress(address)
+  const myText = new TextShape(reducedAddress)
+  myText.fontSize = 2
+  myText.color = Color3.Red()
+  myText.font = new Font(Fonts.SansSerif_Bold)
+  text.addComponent(myText)
+}
 
-const text = new Entity()
-//cube.addComponent(new BoxShape({scale: new Vector3(3, 3, 3)}))
-text.addComponent(new Transform({ position: new Vector3(1, 1, 1) }))
-engine.addEntity(text)
-
-engine.addSystem(new TextRotateSystem(text))
-
-//adding text...
-
-const myText = new TextShape("mike.lun")
-myText.fontSize = 2
-myText.color = Color3.Red()
-myText.font = new Font(Fonts.SansSerif_Bold)
-text.addComponent(myText)
+addingAddressToHead()
 
 const imageBox = new Entity()
 imageBox.addComponent(this.transform.rotation  = Camera.instance.rotation(new BoxShape())
