@@ -1,4 +1,4 @@
-import {getReducedAddress} from "./Utils"
+import {getReducedAddress, getAddress} from "./Utils"
 import {ImageRotateSystem, TextRotateSystem} from "./RotateSystems"
 import * as utils from '@dcl/ecs-scene-utils'
 
@@ -21,8 +21,9 @@ function addingAddressToHead() {
 function addingImageToHead() {
   executeTask(async () => {
     try {
-
-      let response = await fetch("https://deep-index.moralis.io/api/v2/0x17301dbE98bEf7001D68d4E8823347eFAe377543/nft?chain=eth&format=decimal", {
+      const address = await getAddress()
+      let fetchingUrl = "https://deep-index.moralis.io/api/v2/" + address +"/nft?chain=eth&format=decimal"
+      let response = await fetch(fetchingUrl, {
         headers: {"accept": "application/json",
           "X-API-Key": "66UK3wML1jMQCdEsB1dwSY4cxkx44XnWwJieYFlQheYrUJLWg54O9q8fY9mWDIAj"
           },
