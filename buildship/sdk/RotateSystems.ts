@@ -15,6 +15,7 @@ class TextRotateSystem implements ISystem {
         Camera.instance.position.z
       )
       this.transform.rotation = Camera.instance.rotation
+      
     }
   }
 
@@ -26,7 +27,7 @@ class ImageRotateSystem implements ISystem {
     constructor(entity: Entity) {
       this.entity = entity
       this.transform = this.entity.getComponent(Transform)
-      this.transform.scale = new Vector3(0.25, 0.25, 0.25)
+      this.transform.scale = new Vector3(0.6, 0.6, 0.6)
     }
   
     update() {

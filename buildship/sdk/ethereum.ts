@@ -1,4 +1,4 @@
-export function getImageFromNftAddress(address: string) {
+function getImageFromNFTAddress() {
 	const entity = new Entity()
 	const shapeComponent = new NFTShape(
 	  "ethereum://0x06012c8cf97BEaD5deAe237070F9587f8E7A266d/558536"
@@ -11,3 +11,7 @@ export function getImageFromNftAddress(address: string) {
 	)
 	engine.addEntity(entity)
 }
+
+
+
+export {getImageFromNFTAddress}
